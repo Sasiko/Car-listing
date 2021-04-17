@@ -1,0 +1,63 @@
+﻿<Window x:Class="Presentation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="Client" Height="700" Width="600" Name="wind">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="20" VerticalAlignment="Top">
+            <Menu DockPanel.Dock="Top" >
+                <MenuItem  Header="File">
+                    <MenuItem Header="Exit" Command="{Binding ExitClicked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=wind}"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>        
+
+        <Grid Grid.Row="0">
+            <Separator VerticalAlignment="Top" Margin="0,25,0,0"></Separator>
+            <Label FontWeight="Bold" FontSize="15" Content="Registration Number" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox IsEditable="True" Text="{Binding RegistrationNumber,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="RegistrationId" SelectedValuePath="Id" SelectedItem="{Binding SelectedVehicle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Vehicles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="400" HorizontalAlignment="Left" FontSize="15" VerticalAlignment="Center" Margin="10,60,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Label FontWeight="Bold" FontSize="15" Content="Type" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox DisplayMemberPath="Description" SelectedValuePath="TypeId" SelectedItem="{Binding SelectedType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding VehiclesTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="400"  HorizontalAlignment="Left" FontSize="15" VerticalAlignment="Center" Margin="10,60,0,0"/>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Label FontWeight="Bold" FontSize="15" Content="Make" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox DisplayMemberPath="Description" SelectedValuePath="MakeId" SelectedItem="{Binding SelectedMake,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding VehiclesMakes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="400" HorizontalAlignment="Left" FontSize="15" VerticalAlignment="Center" Margin="10,60,0,0"/>
+        </Grid>
+        
+        <Grid Grid.Row="3">
+            <Label FontWeight="Bold" FontSize="15" Content="Description" VerticalAlignment="Top" Margin="10,0,0,0"/>
+            <TextBox Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="60" Width="400" HorizontalAlignment="Left" FontSize="15" VerticalAlignment="Center" Margin="10,20,0,0"/>
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Height="30" Width="100" Content="Create" FontSize="15" Command="{Binding CreateCommand}"/>
+                <Button Height="30" Margin="10,0,0,0" Width="100" Content="Read" FontSize="15" Command="{Binding ReadCommand}"/>
+                <Button Height="30" Margin="10,0,0,0" Width="100" Content="Update" FontSize="15" Command="{Binding UpdateCommand}"/>
+                <Button Height="30" Margin="10,0,0,0" Width="100" Content="Delete" FontSize="15" Command="{Binding DeleteCommand}"/>
+            </StackPanel>
+            <Separator VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <TextBox IsReadOnly="True" FontSize="20" Height="50" Width="400" Text="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        
+    </Grid>
+</Window>
